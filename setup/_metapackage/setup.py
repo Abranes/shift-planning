@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-hr_shift>=15.0dev,<15.1dev',
+        'odoo-addon-hr_shift_holidays_public>=15.0dev,<15.1dev',
     ],
     classifiers=[
         'Programming Language :: Python',
