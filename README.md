@@ -17,7 +17,11 @@ Define shift planning and organise the work of your organization's members.
 
 [//]: # (addons)
 
-This part will be replaced when running the oca-gen-addons-table script from OCA/maintainer-tools.
+Available addons
+----------------
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[hr_shift](hr_shift/) | 15.0.1.0.0 |  | Define shifts for employees
 
 [//]: # (end addons)
 
