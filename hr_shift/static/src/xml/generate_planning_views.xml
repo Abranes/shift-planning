@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <templates>
     <t t-name="ShiftPlanning.generate_planning_button">
-        <button type="button" class="btn btn-secondary o_button_generate_planning">
+        <button
+            type="button"
+            class="btn btn-secondary o_button_generate_planning"
+            t-on-click="onClickGeneratePlanning"
+        >
             Generate Planning
         </button>
     </t>
 
-    <t t-extend="ListView.buttons" t-name="ShiftPlanningtListView.buttons">
-        <t t-jquery="button.o_list_button_add" t-operation="after">
+    <t
+        t-inherit="web.ListView.Buttons"
+        t-name="ShiftPlanningtListView.buttons"
+        t-inherit-mode="primary"
+    >
+        <xpath expr="//div[hasclass('o_list_buttons')]" position="inside">
             <t t-call="ShiftPlanning.generate_planning_button" />
-        </t>
+        </xpath>
     </t>
 
-    <t t-extend="KanbanView.buttons" t-name="ShiftPlanningtKanbanView.buttons">
-        <t t-jquery="button" t-operation="after">
+    <t
+        t-inherit="web.KanbanView.Buttons"
+        t-name="ShiftPlanningtKanbanView.buttons"
+        t-inherit-mode="primary"
+    >
+        <xpath expr="//div[hasclass('o_cp_buttons')]" position="inside">
             <t t-call="ShiftPlanning.generate_planning_button" />
-        </t>
+        </xpath>
     </t>
 </templates>

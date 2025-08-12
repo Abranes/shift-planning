@@ -7,7 +7,7 @@ import pytz
 from odoo import api, models
 from odoo.tools import groupby
 
-from odoo.addons.resource.models.resource import string_to_datetime
+from odoo.addons.resource.models.utils import string_to_datetime
 
 
 class ResourceCalendar(models.Model):

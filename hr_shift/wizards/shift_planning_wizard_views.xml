@@ -12,10 +12,11 @@
                                 string="How?"
                                 widget="radio"
                                 nolabel="1"
+                                colspan="2"
                             />
                             <field
                                 name="from_planning_id"
-                                attrs="{'invisible': [('generation_type', '=', 'from_last')]}"
+                                invisible="generation_type == 'from_last'"
                             />
                             <field name="copy_shift_details" />
                         </group>

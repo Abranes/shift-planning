@@ -67,18 +67,15 @@ class ShiftPlanning(models.Model):
         result.update({"year": year, "week_number": week_number})
         return result
 
-    def name_get(self):
-        result = [
-            (
-                planning.id,
-                (
-                    f"{planning.year} {_('Week')} {planning.week_number} "
-                    f"({planning.start_date} - {planning.end_date})"
-                ),
+    @api.depends("year", "week_number", "start_date", "end_date")
+    def _compute_display_name(self):
+        res = super()._compute_display_name()
+        for planning in self:
+            planning.display_name = (
+                f"{planning.year} {_('Week')} {planning.week_number} "
+                f"({planning.start_date} - {planning.end_date})"
             )
-            for planning in self
-        ]
-        return result
+        return res
 
     @api.depends("shift_ids")
     def _compute_shifts_count(self):
@@ -275,6 +272,7 @@ class ShiftPlanningShift(models.Model):
                 )
             lines = shift.line_ids.create(shift_lines)
             lines._compute_state()
+            lines._compute_template_id()
 
     def write(self, vals):
         if "template_id" not in vals:
@@ -382,22 +380,19 @@ class ShiftPlanningLine(models.Model):
     def _group_expand_template_id(self, templates, domain, order):
         return self.env["hr.shift.template"].search([])
 
-    def name_get(self):
-        result = [
-            (
-                line.id,
-                (
-                    f"{_(dict(WEEK_DAYS_SELECTION).get(line.day_number))} - "
-                    f"""
-                    {line.template_id.name
-                    or dict(
-                        self._fields['state']._description_selection(self.env)
-                    )[line.state]}"""
-                ),
+    @api.depends("day_number", "template_id", "state")
+    def _compute_display_name(self):
+        res = super()._compute_display_name()
+        for line in self:
+            line.display_name = (
+                f"{_(dict(WEEK_DAYS_SELECTION).get(line.day_number))} - "
+                f"""
+                {line.template_id.name
+                or dict(
+                    self._fields['state']._description_selection(self.env)
+                )[line.state]}"""
             )
-            for line in self
-        ]
-        return result
+        return res
 
     @api.depends("planning_id", "day_number", "template_id")
     def _compute_shift_time(self):
