@@ -54,7 +54,7 @@
                             class="oe_stat_button"
                             name="action_view_issued_shifts"
                             type="object"
-                            invisible="state == 'new'"
+                            invisible="state == 'new' or issued_shifts_count == 0"
                             icon="fa-unlink"
                         >
                             <field
@@ -258,17 +258,17 @@
                                     <span t-else="" class="fa fa-square-o" />
                                 </a>
                             </div>
-                            <div class="row no-gutters o_kanban_shift_employee">
+                            <div class="row g-0 o_kanban_shift_employee">
                                 <div class="col-1">
                                     <img
                                         t-att-src="kanban_image('hr.employee', 'image_128', record.employee_id.raw_value)"
                                         t-att-title="record.employee_id.value"
                                         t-att-alt="record.employee_id.value"
-                                        class="oe_kanban_avatar o_image_24_cover float-left mr4"
+                                        class="oe_kanban_avatar o_image_24_cover float-start me-4"
                                     />
                                 </div>
                                 <div class="col-11">
-                                    <strong class="h4 ml-2">
+                                    <strong class="h4 ms-2">
                                         <t t-esc="record.employee_id.value" />
                                     </strong>
                                 </div>
@@ -425,7 +425,7 @@
                                     </div>
                                     <span
                                         t-if="['holiday', 'on_leave'].includes(record.state.raw_value)"
-                                        class="badge badge-secondary"
+                                        class="badge bg-secondary"
                                         t-esc="record.state.value"
                                     />
                                 </div>
@@ -445,7 +445,7 @@
                                         t-if="record.template_id.raw_value"
                                         title="Shift span"
                                     >
-                                        <span class="badge badge-light"><span
+                                        <span class="badge bg-light"><span
                                                 t-esc="record.template_id.value"
                                             /></span>
                                         <i

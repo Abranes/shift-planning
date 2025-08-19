@@ -3,3 +3,5 @@
   - Pedro M. Baeza
 - [Tesseratech](https://www.tesseratech.es):
   - Abraham Anes
+- [Grupo Isonor](https://www.grupoisonor.es):
+  - David Palanca

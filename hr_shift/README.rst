@@ -181,6 +181,10 @@ Contributors
 
   - Abraham Anes
 
+- `Grupo Isonor <https://www.grupoisonor.es>`__:
+
+  - David Palanca
+
 Other credits
 -------------
 
