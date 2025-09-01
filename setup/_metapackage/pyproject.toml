@@ -1,8 +1,9 @@
 [project]
 name = "odoo-addons-oca-shift-planning"
-version = "17.0.20250829.0"
+version = "17.0.20250901.0"
 dependencies = [
     "odoo-addon-hr_shift>=17.0dev,<17.1dev",
+    "odoo-addon-hr_shift_holidays_public>=17.0dev,<17.1dev",
 ]
 classifiers=[
     "Programming Language :: Python",
